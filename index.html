@@ -6,33 +6,12 @@
 <title>Khans.net</title>
 
 <style>
-/* ===== BACKGROUND STARS ===== */
 body{
   margin:0;
   font-family: system-ui,-apple-system;
   background:#05070f;
   color:#fff;
-  overflow-x:hidden;
 }
-body::before,body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(2px 2px at 20% 30%, #fff, transparent),
-    radial-gradient(1.5px 1.5px at 70% 20%, #fff, transparent),
-    radial-gradient(1px 1px at 40% 80%, #fff, transparent),
-    radial-gradient(2px 2px at 80% 60%, #fff, transparent),
-    radial-gradient(1px 1px at 10% 70%, #fff, transparent);
-  animation: twinkle 8s infinite alternate;
-  z-index:-1;
-}
-body::after{opacity:.6;animation-duration:14s}
-@keyframes twinkle{
-  from{transform:translateY(0)}
-  to{transform:translateY(-25px)}
-}
-
 .container{max-width:420px;margin:auto;padding:16px;position:relative}
 
 /* CLOUD ANIMATION */
@@ -71,6 +50,17 @@ body::after{opacity:.6;animation-duration:14s}
 .toggle button{
   background:none;border:1px solid #ffb300;color:#ffb300;
   padding:6px 12px;border-radius:20px;margin:0 4px;
+}
+
+/* CLOCK */
+.timebox{
+  margin:12px 0;
+  padding:10px;
+  text-align:center;
+  border-radius:14px;
+  border:1px solid #ffb300;
+  box-shadow:0 0 15px #ffb300;
+  font-size:14px;
 }
 
 /* PACKAGE CARD */
@@ -126,83 +116,84 @@ body::after{opacity:.6;animation-duration:14s}
   <button onclick="lang('en')">EN</button>
 </div>
 
-<a class="btn messenger" href="https://m.me/Mukhansi123">Contact on Messenger</a>
+<a class="btn messenger" href="https://m.me/yourpage">Contact on Messenger</a>
 <a class="btn telegram" href="https://t.me/yourusername">Contact on Telegram</a>
+
+<!-- CLOCK -->
+<div class="timebox" id="clock"></div>
 
 <!-- MAIN PACKAGES -->
 <div class="card"><div class="badge">HOT</div>
 <h3>Khans.net VPN – 1 Month</h3>
 <p>Unlimited Speed / Unlimited Data</p>
 <p>DTAC Jaidee — 50 Baht</p>
-<a class="buy" href="https://m.me/Mukhansi123">Buy Now</a>
-</div>
+<a class="buy" href="#">Buy Now</a></div>
 
 <div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN  1 Month</h3>
+<h3>Khans.net VPN 1 Month</h3>
 <p>Unlimited Speed / Unlimited Data</p>
-<p>AIS 64kbps  50 Baht</p>
-<a class="buy" href="https://m.me/Mukhansi123">Buy Now</a>
-</div>
+<p>AIS 64kbps — 50 Baht</p>
+<a class="buy" href="#">Buy Now</a></div>
 
 <div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN  1 Month</h3>
+<h3>Khans.net VPN 1 Month</h3>
 <p>Unlimited Speed / Unlimited Data</p>
-<p>DTAC Game panel  50 Baht</p>
-<a class="buy" href="https://m.me/Mukhansi123">Buy Now</a>
-</div>
+<p>DTAC Game panel — 50 Baht</p>
+<a class="buy" href="#">Buy Now</a></div>
 
 <div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN  1 Month</h3>
+<h3>Khans.net VPN 1 Month</h3>
 <p>Unlimited Speed / Unlimited Data</p>
-<p>TRUE VOD  50 Baht</p>
-<a class="buy" href="https://m.me/Mukhansi123">Buy Now</a>
-</div>
+<p>TRUE VOD — 50 Baht</p>
+<a class="buy" href="#">Buy Now</a></div>
 
 <div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN  1 Month</h3>
+<h3>Khans.net VPN 1 Month</h3>
 <p>Unlimited Speed / Unlimited Data</p>
-<p>TRUE TWITTER  50 Baht</p>
-<a class="buy" href="https://m.me/Mukhansi123">Buy Now</a>
-</div>
+<p>TRUE TWITTER — 50 Baht</p>
+<a class="buy" href="#">Buy Now</a></div>
 
 <div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN  1 Month</h3>
+<h3>Khans.net VPN 1 Month</h3>
 <p>Unlimited Speed / Unlimited Data</p>
-<p>DTAC Jaidee  50 Baht</p>
-<a class="buy" href="https://m.me/Mukhansi123">Buy Now</a>
-</div>
+<p>DTAC Jaidee — 50 Baht</p>
+<a class="buy" href="#">Buy Now</a></div>
 
 <!-- EXTRA PACKAGES -->
 <div class="card"><div class="badge">NEW</div>
-<h3>DTAC Jaidee 1 Month</h3><p>*117*30# — 30 Baht</p>
+<h3>DTAC Jaidee 1 Month</h3>
+<p>*117*30# — 30 Baht</p>
 <div class="ussd">
 <span>*117*30#</span>
 <button class="copy" onclick="copy('*117*30#')">Copy</button>
-<a class="call" href="tel:*117*30#">Call</a>
+<a class="call" href="tel:*117*30%23">Call</a>
 </div></div>
 
 <div class="card">
-<h3>AIS 64Kbps 1 Month</h3><p>*777*7067# — 34 Baht</p>
+<h3>AIS 64Kbps 1 Month</h3>
+<p>*777*7067# — 34 Baht</p>
 <div class="ussd">
 <span>*777*7067#</span>
 <button class="copy" onclick="copy('*777*7067#')">Copy</button>
-<a class="call" href="tel:*777*7067#">Call</a>
+<a class="call" href="tel:*777*7067%23">Call</a>
 </div></div>
 
 <div class="card">
-<h3>True VDO 1 Month</h3><p>*900*8234# — 85 Baht</p>
+<h3>True VDO 1 Month</h3>
+<p>*900*8234# — 85 Baht</p>
 <div class="ussd">
 <span>*900*8234#</span>
 <button class="copy" onclick="copy('*900*8234#')">Copy</button>
-<a class="call" href="tel:*900*8234#">Call</a>
+<a class="call" href="tel:*900*8234%23">Call</a>
 </div></div>
 
 <div class="card">
-<h3>True Twitter 1 Month</h3><p>*900*3509# — 53 Baht</p>
+<h3>True Twitter 1 Month</h3>
+<p>*900*3509# — 53 Baht</p>
 <div class="ussd">
 <span>*900*3509#</span>
 <button class="copy" onclick="copy('*900*3509#')">Copy</button>
-<a class="call" href="tel:*900*3509#">Call</a>
+<a class="call" href="tel:*900*3509%23">Call</a>
 </div></div>
 
 <div class="footer">© 2026 Khans.net</div>
@@ -218,9 +209,20 @@ function copy(t){
   document.body.removeChild(a);
   alert("Copied: "+t);
 }
+
 function lang(l){
   alert(l==="th"?"Thai language demo":"English language demo");
 }
+
+function updateClock(){
+  const d = new Date();
+  document.getElementById("clock").innerText =
+    d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) +
+    " | " +
+    d.toDateString();
+}
+updateClock();
+setInterval(updateClock,60000);
 </script>
 
 </body>
