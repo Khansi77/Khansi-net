@@ -6,69 +6,129 @@
 <title>Khans.net</title>
 
 <style>
+/* ===== AI BACKGROUND (UPDATED COLORFUL) ===== */
 body{
   margin:0;
   font-family: system-ui,-apple-system;
-  background:#05070f;
   color:#fff;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,0,150,.25), transparent 40%),
+    radial-gradient(circle at 85% 25%, rgba(0,255,255,.25), transparent 45%),
+    radial-gradient(circle at 50% 85%, rgba(0,255,100,.25), transparent 40%),
+    linear-gradient(135deg, #050014, #0b0033, #020412);
+  background-size:200% 200%;
+  animation:aiFlow 18s linear infinite;
 }
-.container{max-width:420px;margin:auto;padding:16px;position:relative}
 
-/* CLOUD ANIMATION */
-.cloud{
-  position:absolute;background:#fff;opacity:.12;border-radius:50px;
-  animation:move 40s linear infinite;
+@keyframes aiFlow{
+  0%{background-position:0% 0%}
+  50%{background-position:100% 100%}
+  100%{background-position:0% 0%}
 }
-.cloud:before,.cloud:after{
-  content:"";position:absolute;background:#fff;border-radius:50%;
+
+/* ===== AI GRID ===== */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    repeating-linear-gradient(90deg, rgba(0,255,255,.06) 0, rgba(0,255,255,.06) 1px, transparent 1px, transparent 70px),
+    repeating-linear-gradient(0deg, rgba(255,0,200,.06) 0, rgba(255,0,200,.06) 1px, transparent 1px, transparent 70px);
+  animation:gridMove 22s linear infinite;
+  z-index:-2;
 }
+
+@keyframes gridMove{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(-70px)}
+}
+
+/* ===== AI NODES ===== */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle, rgba(0,255,255,.9) 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,0,200,.9) 1px, transparent 2px),
+    radial-gradient(circle, rgba(0,255,120,.9) 1px, transparent 2px);
+  background-size:120px 120px,160px 160px,200px 200px;
+  animation:nodesFloat 28s linear infinite;
+  z-index:-1;
+  opacity:.4;
+}
+
+@keyframes nodesFloat{
+  0%{background-position:0 0,40px 80px,100px 40px}
+  100%{background-position:300px 600px,600px 300px,400px 800px}
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:16px;
+  position:relative;
+  z-index:1;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(8px);
+  border-radius:22px;
+  box-shadow:0 0 50px rgba(0,255,255,.35);
+}
+
+/* CLOUD */
+.cloud{position:absolute;background:#fff;opacity:.15;border-radius:50px;animation:move 45s linear infinite;}
+.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%;}
 .cloud:before{width:40px;height:40px;top:-20px;left:10px}
 .cloud:after{width:50px;height:50px;top:-25px;right:10px}
 .c1{width:140px;height:45px;top:20px;left:-150px}
-.c2{width:180px;height:55px;top:60px;left:-200px;animation-duration:55s}
+.c2{width:180px;height:55px;top:70px;left:-200px;animation-duration:60s}
 @keyframes move{to{transform:translateX(700px)}}
 
 /* HEADER */
 .header{text-align:center;margin-top:60px}
+
+/* LOGO CIRCLE (FIXED) */
 .circle{
-  width:70px;height:70px;border-radius:50%;
-  border:2px solid #ffb300;
-  box-shadow:0 0 25px #ffb300,0 0 45px #ff6f00;
-  margin:10px auto;
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:3px solid #ff00cc;
+  box-shadow:0 0 40px #00ffff,0 0 90px #ff00cc;
+  margin:20px auto;
+  overflow:hidden;
+  position:relative;
+  z-index:2;
+}
+
+.circle img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
 /* BUTTONS */
-.btn{
-  display:block;text-align:center;padding:12px;margin:8px 0;
-  border-radius:14px;text-decoration:none;color:#fff;font-weight:bold;
-}
-.messenger{background:#1877f2}
-.telegram{background:#229ED9}
+.btn{display:block;text-align:center;padding:12px;margin:8px 0;border-radius:14px;text-decoration:none;color:#fff;font-weight:bold;}
+.messenger{background:linear-gradient(135deg,#00c6ff,#0072ff);box-shadow:0 0 20px #00c6ff;}
+.telegram{background:linear-gradient(135deg,#ff00cc,#8a2be2);box-shadow:0 0 20px #ff00cc;}
 
 /* TOGGLE */
 .toggle{text-align:center;margin:10px 0}
-.toggle button{
-  background:none;border:1px solid #ffb300;color:#ffb300;
-  padding:6px 12px;border-radius:20px;margin:0 4px;
-}
+.toggle button{background:none;border:1px solid #00ffff;color:#00ffff;padding:6px 12px;border-radius:20px;margin:0 4px;box-shadow:0 0 12px rgba(0,255,255,.7);}
 
 /* CLOCK */
-.timebox{
-  margin:12px 0;
-  padding:10px;
-  text-align:center;
-  border-radius:14px;
-  border:1px solid #ffb300;
-  box-shadow:0 0 15px #ffb300;
-  font-size:14px;
-}
+.timebox{margin:12px 0;padding:10px;text-align:center;border-radius:14px;border:1px solid #ff00cc;box-shadow:0 0 20px #ff00cc;font-size:14px;}
 
-/* PACKAGE CARD */
+/* CARD */
 .card{
-  margin-top:14px;padding:14px;border-radius:18px;
-  background:linear-gradient(180deg,#1a1200,#0b0f1a);
-  border:1px solid #ffb300;
-  box-shadow:0 0 18px #ffb300, inset 0 0 8px #ff6f00;
+  margin-top:14px;
+  padding:14px;
+  border-radius:18px;
+  background:linear-gradient(180deg,#080020,#020412);
+  border:1px solid #00ffff;
+  box-shadow:0 0 25px rgba(0,255,255,.7);
   position:relative;
 }
 .card h3{margin:0;font-size:16px}
@@ -76,26 +136,32 @@ body{
 
 /* BADGE */
 .badge{
-  position:absolute;top:-10px;right:-10px;
-  background:#00e676;color:#000;
-  padding:4px 10px;font-size:11px;
-  border-radius:20px;font-weight:bold;
+  position:absolute;
+  top:-10px;
+  right:-10px;
+  background:#ffea00;
+  color:#000;
+  padding:4px 10px;
+  font-size:11px;
+  border-radius:20px;
+  font-weight:bold;
+  box-shadow:0 0 14px #ffea00;
+}
+
+.badge.smart{
+  background:#ff0033;
+  color:#fff;
+  box-shadow:0 0 16px #ff0033;
 }
 
 /* BUY */
-.buy{
-  margin-top:10px;display:block;text-align:center;
-  padding:12px;border-radius:30px;
-  background:linear-gradient(90deg,#ff9800,#ff5722);
-  box-shadow:0 0 20px #ff9800;
-  color:#fff;font-weight:bold;text-decoration:none;
-}
+.buy{margin-top:10px;display:block;text-align:center;padding:12px;border-radius:30px;background:linear-gradient(90deg,#00ffff,#ff00cc);box-shadow:0 0 28px #00ffff;color:#000;font-weight:bold;text-decoration:none;}
 
 /* USSD */
 .ussd{display:flex;gap:8px;margin-top:8px}
 .ussd span{flex:1;background:#000;padding:8px;border-radius:10px}
-.copy{background:#ffb300;border:none;border-radius:10px;padding:8px}
-.call{background:#25d366;border-radius:10px;padding:8px 12px;text-decoration:none;color:#000;font-weight:bold}
+.copy{background:#00ffff;border:none;border-radius:10px;padding:8px;box-shadow:0 0 10px #00ffff}
+.call{background:#25d366;border-radius:10px;padding:8px 12px;text-decoration:none;color:#000;font-weight:bold;box-shadow:0 0 10px #25d366}
 
 .footer{text-align:center;font-size:12px;opacity:.6;margin:20px 0}
 </style>
@@ -108,7 +174,9 @@ body{
 
 <div class="header">
   <h2>Khans.net</h2>
-  <div class="circle"></div>
+  <div class="circle">
+    <img src="https://raw.githubusercontent.com/Khansi77/Khansi-net/main/file_00000000237071faacc4005446ff3fae.png" alt="Khans.Net VPN Logo">
+  </div>
 </div>
 
 <div class="toggle">
@@ -116,85 +184,28 @@ body{
   <button onclick="lang('en')">EN</button>
 </div>
 
-<a class="btn messenger" href="https://m.me/yourpage">Contact on Messenger</a>
-<a class="btn telegram" href="https://t.me/yourusername">Contact on Telegram</a>
+<a class="btn messenger" href="https://m.me/Mukhansi123">Contact on Messenger</a>
+<a class="btn telegram" href="https://t.me/KYAWMINKHANT231">Contact on Telegram</a>
 
-<!-- CLOCK -->
 <div class="timebox" id="clock"></div>
 
-<!-- MAIN PACKAGES -->
-<div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN – 1 Month</h3>
-<p>Unlimited Speed / Unlimited Data</p>
-<p>DTAC Jaidee — 50 Baht</p>
-<a class="buy" href="#">Buy Now</a></div>
+<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN – 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>DTAC Jaidee — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
 
-<div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN 1 Month</h3>
-<p>Unlimited Speed / Unlimited Data</p>
-<p>AIS 64kbps — 50 Baht</p>
-<a class="buy" href="#">Buy Now</a></div>
+<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>AIS 64kbps — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
 
-<div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN 1 Month</h3>
-<p>Unlimited Speed / Unlimited Data</p>
-<p>DTAC Game panel — 50 Baht</p>
-<a class="buy" href="#">Buy Now</a></div>
+<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>DTAC Game panel — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
 
-<div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN 1 Month</h3>
-<p>Unlimited Speed / Unlimited Data</p>
-<p>TRUE VOD — 50 Baht</p>
-<a class="buy" href="#">Buy Now</a></div>
+<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>TRUE VOD — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
 
-<div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN 1 Month</h3>
-<p>Unlimited Speed / Unlimited Data</p>
-<p>TRUE TWITTER — 50 Baht</p>
-<a class="buy" href="#">Buy Now</a></div>
+<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>TRUE TWITTER — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
 
-<div class="card"><div class="badge">HOT</div>
-<h3>Khans.net VPN 1 Month</h3>
-<p>Unlimited Speed / Unlimited Data</p>
-<p>DTAC Jaidee — 50 Baht</p>
-<a class="buy" href="#">Buy Now</a></div>
+<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>DTAC Jaidee 1 Month</h3><p>*117*30# — 30 Baht</p><div class="ussd"><span>*117*30#</span><button class="copy" onclick="copy('*117*30#')">Copy</button><a class="call" href="tel:*117*30%23">Call</a></div></div>
 
-<!-- EXTRA PACKAGES -->
-<div class="card"><div class="badge">NEW</div>
-<h3>DTAC Jaidee 1 Month</h3>
-<p>*117*30# — 30 Baht</p>
-<div class="ussd">
-<span>*117*30#</span>
-<button class="copy" onclick="copy('*117*30#')">Copy</button>
-<a class="call" href="tel:*117*30%23">Call</a>
-</div></div>
+<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>AIS 64Kbps 1 Month</h3><p>*777*7067# — 34 Baht</p><div class="ussd"><span>*777*7067#</span><button class="copy" onclick="copy('*777*7067#')">Copy</button><a class="call" href="tel:*777*7067%23">Call</a></div></div>
 
-<div class="card">
-<h3>AIS 64Kbps 1 Month</h3>
-<p>*777*7067# — 34 Baht</p>
-<div class="ussd">
-<span>*777*7067#</span>
-<button class="copy" onclick="copy('*777*7067#')">Copy</button>
-<a class="call" href="tel:*777*7067%23">Call</a>
-</div></div>
+<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>True VDO 1 Month</h3><p>*900*8234# — 85 Baht</p><div class="ussd"><span>*900*8234#</span><button class="copy" onclick="copy('*900*8234#')">Copy</button><a class="call" href="tel:*900*8234%23">Call</a></div></div>
 
-<div class="card">
-<h3>True VDO 1 Month</h3>
-<p>*900*8234# — 85 Baht</p>
-<div class="ussd">
-<span>*900*8234#</span>
-<button class="copy" onclick="copy('*900*8234#')">Copy</button>
-<a class="call" href="tel:*900*8234%23">Call</a>
-</div></div>
-
-<div class="card">
-<h3>True Twitter 1 Month</h3>
-<p>*900*3509# — 53 Baht</p>
-<div class="ussd">
-<span>*900*3509#</span>
-<button class="copy" onclick="copy('*900*3509#')">Copy</button>
-<a class="call" href="tel:*900*3509%23">Call</a>
-</div></div>
+<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>True Twitter 1 Month</h3><p>*900*3509# — 53 Baht</p><div class="ussd"><span>*900*3509#</span><button class="copy" onclick="copy('*900*3509#')">Copy</button><a class="call" href="tel:*900*3509%23">Call</a></div></div>
 
 <div class="footer">© 2026 Khans.net</div>
 </div>
@@ -209,17 +220,10 @@ function copy(t){
   document.body.removeChild(a);
   alert("Copied: "+t);
 }
-
-function lang(l){
-  alert(l==="th"?"Thai language demo":"English language demo");
-}
-
+function lang(l){alert(l==="th"?"Thai language demo":"English language demo");}
 function updateClock(){
-  const d = new Date();
-  document.getElementById("clock").innerText =
-    d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) +
-    " | " +
-    d.toDateString();
+  const d=new Date();
+  document.getElementById("clock").innerText=d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})+" | "+d.toDateString();
 }
 updateClock();
 setInterval(updateClock,60000);
