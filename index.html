@@ -1,232 +1,180 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>KHAN NET Server Status</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Khans.net</title>
 
 <style>
-/* ===== AI BACKGROUND (UPDATED COLORFUL) ===== */
 body{
-  margin:0;
-  font-family: system-ui,-apple-system;
-  color:#fff;
-  overflow-x:hidden;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,0,150,.25), transparent 40%),
-    radial-gradient(circle at 85% 25%, rgba(0,255,255,.25), transparent 45%),
-    radial-gradient(circle at 50% 85%, rgba(0,255,100,.25), transparent 40%),
-    linear-gradient(135deg, #050014, #0b0033, #020412);
-  background-size:200% 200%;
-  animation:aiFlow 18s linear infinite;
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#020702;
+    color:#fff;
+    display:flex;
+    justify-content:center;
 }
-
-@keyframes aiFlow{
-  0%{background-position:0% 0%}
-  50%{background-position:100% 100%}
-  100%{background-position:0% 0%}
-}
-
-/* ===== AI GRID ===== */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    repeating-linear-gradient(90deg, rgba(0,255,255,.06) 0, rgba(0,255,255,.06) 1px, transparent 1px, transparent 70px),
-    repeating-linear-gradient(0deg, rgba(255,0,200,.06) 0, rgba(255,0,200,.06) 1px, transparent 1px, transparent 70px);
-  animation:gridMove 22s linear infinite;
-  z-index:-2;
-}
-
-@keyframes gridMove{
-  0%{transform:translateY(0)}
-  100%{transform:translateY(-70px)}
-}
-
-/* ===== AI NODES ===== */
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle, rgba(0,255,255,.9) 1px, transparent 2px),
-    radial-gradient(circle, rgba(255,0,200,.9) 1px, transparent 2px),
-    radial-gradient(circle, rgba(0,255,120,.9) 1px, transparent 2px);
-  background-size:120px 120px,160px 160px,200px 200px;
-  animation:nodesFloat 28s linear infinite;
-  z-index:-1;
-  opacity:.4;
-}
-
-@keyframes nodesFloat{
-  0%{background-position:0 0,40px 80px,100px 40px}
-  100%{background-position:300px 600px,600px 300px,400px 800px}
-}
-
-/* ===== CONTAINER ===== */
 .container{
-  max-width:420px;
-  margin:auto;
-  padding:16px;
-  position:relative;
-  z-index:1;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(8px);
-  border-radius:22px;
-  box-shadow:0 0 50px rgba(0,255,255,.35);
+    width:360px;
+    padding:20px;
+    text-align:center;
 }
-
-/* CLOUD */
-.cloud{position:absolute;background:#fff;opacity:.15;border-radius:50px;animation:move 45s linear infinite;}
-.cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%;}
-.cloud:before{width:40px;height:40px;top:-20px;left:10px}
-.cloud:after{width:50px;height:50px;top:-25px;right:10px}
-.c1{width:140px;height:45px;top:20px;left:-150px}
-.c2{width:180px;height:55px;top:70px;left:-200px;animation-duration:60s}
-@keyframes move{to{transform:translateX(700px)}}
-
-/* HEADER */
-.header{text-align:center;margin-top:60px}
-
-/* LOGO CIRCLE (FIXED) */
-.circle{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  border:3px solid #ff00cc;
-  box-shadow:0 0 40px #00ffff,0 0 90px #ff00cc;
-  margin:20px auto;
-  overflow:hidden;
-  position:relative;
-  z-index:2;
+.logo{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    margin:auto;
+    box-shadow:0 0 30px #00ff66;
 }
-
-.circle img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+.logo img{
+    width:100%;
+    height:100%;
+    border-radius:50%;
 }
-
-/* BUTTONS */
-.btn{display:block;text-align:center;padding:12px;margin:8px 0;border-radius:14px;text-decoration:none;color:#fff;font-weight:bold;}
-.messenger{background:linear-gradient(135deg,#00c6ff,#0072ff);box-shadow:0 0 20px #00c6ff;}
-.telegram{background:linear-gradient(135deg,#ff00cc,#8a2be2);box-shadow:0 0 20px #ff00cc;}
-
-/* TOGGLE */
-.toggle{text-align:center;margin:10px 0}
-.toggle button{background:none;border:1px solid #00ffff;color:#00ffff;padding:6px 12px;border-radius:20px;margin:0 4px;box-shadow:0 0 12px rgba(0,255,255,.7);}
-
-/* CLOCK */
-.timebox{margin:12px 0;padding:10px;text-align:center;border-radius:14px;border:1px solid #ff00cc;box-shadow:0 0 20px #ff00cc;font-size:14px;}
-
-/* CARD */
-.card{
-  margin-top:14px;
-  padding:14px;
-  border-radius:18px;
-  background:linear-gradient(180deg,#080020,#020412);
-  border:1px solid #00ffff;
-  box-shadow:0 0 25px rgba(0,255,255,.7);
-  position:relative;
+.status-title{
+    color:#00ff66;
+    font-size:22px;
+    margin-top:15px;
+    text-shadow:0 0 10px #00ff66;
 }
-.card h3{margin:0;font-size:16px}
-.card p{margin:4px 0;font-size:13px;opacity:.9}
-
-/* BADGE */
-.badge{
-  position:absolute;
-  top:-10px;
-  right:-10px;
-  background:#ffea00;
-  color:#000;
-  padding:4px 10px;
-  font-size:11px;
-  border-radius:20px;
-  font-weight:bold;
-  box-shadow:0 0 14px #ffea00;
+.status-sub{
+    color:#9cffb8;
+    margin-bottom:20px;
 }
-
-.badge.smart{
-  background:#ff0033;
-  color:#fff;
-  box-shadow:0 0 16px #ff0033;
+.box{
+    border:2px dashed #00ff66;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:15px;
+    box-shadow:0 0 18px rgba(200,0,255,0.45);
+    background:rgba(255,255,255,0.02);
 }
-
-/* BUY */
-.buy{margin-top:10px;display:block;text-align:center;padding:12px;border-radius:30px;background:linear-gradient(90deg,#00ffff,#ff00cc);box-shadow:0 0 28px #00ffff;color:#000;font-weight:bold;text-decoration:none;}
-
-/* USSD */
-.ussd{display:flex;gap:8px;margin-top:8px}
-.ussd span{flex:1;background:#000;padding:8px;border-radius:10px}
-.copy{background:#00ffff;border:none;border-radius:10px;padding:8px;box-shadow:0 0 10px #00ffff}
-.call{background:#25d366;border-radius:10px;padding:8px 12px;text-decoration:none;color:#000;font-weight:bold;box-shadow:0 0 10px #25d366}
-
-.footer{text-align:center;font-size:12px;opacity:.6;margin:20px 0}
+.box h3{
+    margin:0 0 12px;
+    font-weight:normal;
+    color:#ffd6ff;
+}
+.btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    color:#000;
+    background:linear-gradient(90deg,#00ff66,#6aff9c);
+    box-shadow:0 0 18px #c800ff;
+}
+.btn:active{
+    transform:scale(0.96);
+}
+.music{
+    margin-top:20px;
+    padding:12px;
+    border-radius:16px;
+    background:#120015;
+    box-shadow:0 0 15px #c800ff;
+}
+.music span{
+    color:#ff4dff;
+    text-shadow:0 0 8px #c800ff;
+}
 </style>
 </head>
 
 <body>
 <div class="container">
-<div class="cloud c1"></div>
-<div class="cloud c2"></div>
 
-<div class="header">
-  <h2>Khans.net</h2>
-  <div class="circle">
-    <img src="https://raw.githubusercontent.com/Khansi77/Khansi-net/main/file_00000000237071faacc4005446ff3fae.png" alt="Khans.Net VPN Logo">
-  </div>
+<div class="logo">
+<img src="https://raw.githubusercontent.com/Khansi77/Ssh-key-vd/refs/heads/main/images%20(4).png">
 </div>
 
-<div class="toggle">
-  <button onclick="lang('th')">TH</button>
-  <button onclick="lang('en')">EN</button>
+<div class="status-title">SERVER IS RUNNING</div>
+<div class="status-sub">| Status: Active</div>
+
+<div class="box">
+<h3>Ais 64Kbps</h3>
+<button class="btn" onclick="copyText('vless://c87a9829-3f69-489a-c373-537bf6e91ad7@43.228.85.246:8080?path=%2F&security=none&encryption=none&host=www.speedtest.net&type=ws#Si-Ais%28100gb%29')">COPY VLESS Key</button>
 </div>
 
-<a class="btn messenger" href="https://m.me/Mukhansi123">Contact on Messenger</a>
-<a class="btn telegram" href="https://t.me/KYAWMINKHANT231">Contact on Telegram</a>
+<div class="box">
+<h3>True Vdo</h3>
+<button class="btn" onclick="copyText('vless://7d672cea-1319-46ba-f92b-7d86e55e01b6@support.zoom.us:80?path=%2F&security=none&encryption=none&host=blood.khamsi.cc.cd&type=ws#True%20vod%281%29')">COPY VLESS Key</button>
+</div>
 
-<div class="timebox" id="clock"></div>
+<div class="box">
+<h3>Starlink Old Bypass</h3>
+<button class="btn" onclick="copyText('vless://b8afb42e-bb7e-4b48-917c-6df4fd737136@43.228.85.246:80?path=%2F&security=none&encryption=none&host=portal-as.ruijienetworks.com&type=ws#starlink%20old%20bypass')">COPY VLESS Key</button>
+</div>
 
-<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN – 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>DTAC Jaidee — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
+<div class="box">
+<h3>Dtac No-pro Mytel 4g</h3>
+<button class="btn" onclick="copyText('vless://ba0e3984-ccc9-48a3-8074-b2f507f41ce8@vpn.googleapis.com:443?path=%2F%40nkka404&security=tls&encryption=none&host=khansi-830461666504.us-central1.run.app&type=ws&sni=khansi-830461666504.us-central1.run.app#Dtac%20nopro')">COPY VLESS Key</button>
+</div>
 
-<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>AIS 64kbps — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
+<div class="box">
+<h3>Myanmar For Outline</h3>
+<button class="btn" onclick="copyText('ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMaEJzUHdQanBRTkx3TkFicm5YeklpU29GY293OE5XeDRLN2xJZE1sSTZzPQ%3D%3D@43.228.85.246:25155#myanmar%20all%28sim%29wifi')">COPY Outline Key</button>
+</div>
 
-<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>DTAC Game panel — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
+<!-- ✅ Dtac Game -->
+<div class="box">
+<h3>Dtac Game (NetMod)</h3>
+<button class="btn" onclick="copyText('nm-ssh://55c8fqSsLUUgOb4HT32dXQp/cyhcuZXdVOtQsZ7ZJgefIwf0KOyOZIHHgTkYrlruJa+3c6BiEjrlnY8lcr0bpjPm07ZbR5fe0JRtwM/qOMxpak+xglksVp1oj7b1AUY3QFeKUO/9QkgU4zQ0jbQXvxNKfO26/UI9r81UFbXSTBYyj+OjrPFjfWIWXq07mAp9h+OV4PU4IRECKRbBI4s7/Q+yxq2GK4A0YzWhLZyomp3cLcoXA6EDha1rJRUOflQ7u/KRHbT5/QmLxmLdYX9eEUAH+mZvUQhTJP+v9FpsO1i8laVdyt2exRI40oHeYn4bAajYwWLH6fV0gD27tPNSWBnW/y0CPM7q+lvM2Rk41mmSjzq3vYoxjdKFjc/9222W3e8/z/wc5mWhtH7D0kTq9eIejxvaA2YciGJvQi1psKF1gJo5YoM/XAA20eXfsKKP9fPnosyn5LBECSzfoz0HqCUCqpKVsMh8ypYYyb0c0CtoWbtDx2kJfA2mStOQx9NQmfF7X6Kc+f1p+FeEsAwcVga2YLeQ/m5rx22bE+m/cwIzpRxX/JcS+MhZdSWLdY9rCN8BYCFi996gpY7IKwO3D6mXFIZXBknWfSrrhpRwTsm+QhEG/kADu2EaBiUtvQb3O50RqrcFdSKGFateSCtC4JgM0gOP1s5rngj6l/RoVD5YRB5sbt1rFoSQM6NYbNmJSRHC1XTJbcLMTTXKL9PEvcErkSCz73boqB7exohMLTyPjtOXiiastjFBsFuVQcV9bsLr00toAMiaC3hnATklWaGWrI4wmYF4lIJxy8b6+e7j3hCi2o8o2m1jaYzGspU5')">COPY SSH Key</button>
+</div>
 
-<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>TRUE VOD — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
+<!--  Atom 500Mb -->
+<div class="box">
+<h3>Atom 500Mb (NetMod)</h3>
+<button class="btn" onclick="copyText('nm-ssh://O3y3P50hX+DuE5etvsKI2WRHkhLqtuZJZA7qv71z8nJbpZd/oXHoI7IvQkhYoSwiJa+3c6BiEjrlnY8lcr0bpjPm07ZbR5fe0JRtwM/qOMxpak+xglksVp1oj7b1AUY3GMFQVbS0/BVmA0OobkCjdHsBz079vnOH8mK3G4ERhNPyPsoj+lFoHXkc+oifPGZm/+fEoeJfKDxhDOmvJd/MXNKyy04NCIaWiDBm25MElU2dRF34iFCF4PTOPgSkFnMn7M21jr87CrTej2qc41+eOCkNwmMlRfWYk3GFEkkyOi4KURJFINlU3l3MD3UQpTutxU3X7IUYqOllaFeaOJ9Xf5NN0o2akNVnfKOv/X1A/9oQWbgGzhXS1jq+y0EvQQlxQO4rovklrbJPBeRAigcxDe/6Q+H5wdXXYoU3H7PQjPGci3Of5rZw177vmf0PbzTotAbZniIC8Jw9N0mig1wwZiJamOli/WQ9xPg26WgwVAsPst1jNy0bbrf8TCy9pT+pTG99BwUOlwyMVAbxxzhm+wNaQm9Ogz4n69/j647jk8U859vJGA900jBlMAynoJkhZqAlmeyT/OF/w3OrWvd8Hxg0z/hqgATurSPb5TBPv8hV37dbt4s4IZs9LsDJxabbtCIK4CEksRwJ9ZSQM4xiDACI//SyZIkorfyFWGEMQrczBn7MC1qJFc2ddEP7m6a14Fy380qLHLRbjQfDGFievrGwT6GH5ShqfWibS/xLheJEH9Z69WImaS7yotSxdCG5')">COPY SSH Key</button>
+</div>
 
-<div class="card"><div class="badge">HOT</div><h3>Khans.net VPN 1 Month</h3><p>Unlimited Speed / Unlimited Data</p><p>TRUE TWITTER — 50 Baht</p><a class="buy" href="https://m.me/Mukhansi123">Buy Now</a></div>
+<!--  True Twitter -->
+<div class="box">
+<h3>True Twitter (NetMod)</h3>
+<button class="btn" onclick="copyText('nm-ssh://0Ohit0zAQvDfss9YNShekgp/cyhcuZXdVOtQsZ7ZJgeThxAtLywyAn6IGSEXUSdmHAdTb4OEZqQLht1pR0qxOr+5/nJ0EESNWEpjYrqhlH1RVWEL8SgqRD19nBLwQz/HVQ+vmoHSs81XEe7ny5HYpNPNHFN2/s4UhcG5j5/RB7/dK+8OTf5LQfoL6rJz/C53XsGDNbCNC3oyaN82ZRRI0kly2aLT2MWIDLMj3QtFX+cnYMz2qw14ePLhCP8XtWpS4bEFl65l4xahwo6yDSQFgiNUmGYAD83SV6NNAI8Iv7l6CYzC6F/NMPZyg1uGbAHBQDv757vBVZDbv0Se9ZuWIAxSh28ip3JMjprWwbjWIMq/n97VRmYtYNb+vIxLMC0/ACYA/45kJQYIZf2BgxPI+ig78PTQo8mZi58h4OV8g5nO2emQnwvC0bzOm/mC2bmiFX5b+t9l+tCM5Gv/L9X3vlROpNegIyQSEIf5CMYB+vMxeDVbRRbGhaS/qLEoQR31hu6fEp7UYrl/ea17MusjM3D/iNdFHyAIy+Lq1/Z7N9rShLimi2GOo9laHN25eNKtctLhYPPOInGx1Kk02wIuk31lSu6AllQ2gXN9yj6IEnDMsqJ1rtJg7niBYALhtgtBepnA/DW8IQtaV+jI6FalHNKut8Jqzf6rThaohbdQEMCpH6gj5OTUuPnZzMYEtaFwoZWe+wcDnPqfPXDkh9PHYFDr4yCDZp/+4uWfmIhCI5WdgPjoN2PNip7bagnN010+')">COPY SSH Key</button>
+</div>
 
-<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>DTAC Jaidee 1 Month</h3><p>*117*30# — 30 Baht</p><div class="ussd"><span>*117*30#</span><button class="copy" onclick="copy('*117*30#')">Copy</button><a class="call" href="tel:*117*30%23">Call</a></div></div>
+<!-- ✅ Dtac Jaidee -->
+<div class="box">
+<h3>Dtac Jaidee (ZiVPN)</h3>
+<button class="btn" onclick="copyText('zivpn://r0no+QJeY9jHAV6lt/shRATSSsWsWqA3Ia9iJ93kTiMG3C/d0lNlna13wuC8+NvvArrWtRP8GXPQghivgKcONHwjMPuGN75aiACIdoC7Rxc2D1oFFFceGNaG6qq/pF56fCEoOy09+Z1oYstXzgb7OaCR1SuprbpTyi13FYET0c/cRqUGHftwf42U0vor7Svqv1s8MEZp4Hgq9eGfZpY6QV721EAE73hfXKb/pFO1GAt4zGDdBqJG4TtqeSGuveA5d9fmxFCXCm2BX+W5MzQYXFOUfnW5wOpvc1wQF0bCWWKAquoE9EMbYPeuoHwwrKQ2nfeV1iXaHXrVbTUsiHmipdDi5YxrUVeggIs4yNQwj9koW0ke+4tj/+myMO4wDOMRQ2j/e/cexY9EAVQ81kZvyAOfXnNrNru+G7wHtG+pJFev7Nrm8RQjc2m1MZw8s6GRCQOnH4fANOo/crrtjpy++EC1V/Lu98J8UlvrHCsRkz7qPNrpx6dWMEiR2hei7wSOTgpRqwiZSH0bA3N0nYag+orsuf8rPBXRhyCwQzK8Bu4TXjhnFvJ5J+vtRGSk2OzHEJkTvGutS41+/289GApGevleXiUpq+rwNXRe4GRh6gkICm/7wyLq++yS1hO5oYk3A3+HQV7KzVNvCVE9KQK5FmKyqh+JzKaX2+alsghglVc4b3n3Kl5cJZxyh/DMG5lLtqw4HfYqhiNBEkGe6DVIZYBHuPFxP9LAZxxFvuQh3GFnhz7MxuPVRLexCMtgAU6LDR8YwbdQe2q92oEsZGFyDm7SIn1elzZ7qjHFjoRjfFwwzomIt0ek/tOF6C2yldVUPGIbd1p1H+MPzWz4N3kKrkryvvzjEr/8KCQkAYQEaateK1YCrHq5nbM54tg5djBc9sYCJcMu35RQzXVpXnBtKYo7yYaixvQM3Y4bfA8jmC+qMx2IcP5yCjqVbBVKJFy8KWtlJq/NCAjcwyc9nMW8gaubTzDqLNdhjVI72n8VefjppJlz8M3L7SGVBh8kyhguUjVgBCHn8S2Cd1OtYu8ZXRmMjNC5lvk9Nn1KGvUBJVQlh3j7A7quAGF2YyZZyX0vwdpg2nOG3neXOj4OIeSHQAX3zx/HVAPeInRsBrHfOmeEL3O9Ir/Ua4BMckg9oEWS')">COPY UDP Key</button>
+</div>
 
-<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>AIS 64Kbps 1 Month</h3><p>*777*7067# — 34 Baht</p><div class="ussd"><span>*777*7067#</span><button class="copy" onclick="copy('*777*7067#')">Copy</button><a class="call" href="tel:*777*7067%23">Call</a></div></div>
+<div class="music">
+<span>Khansi Background Music</span>
+<audio controls loop style="width:100%;margin-top:8px;">
+<source src="https://codeberg.org/khansi/mp31/raw/branch/main/_%E1%80%9B%E1%80%80%E1%80%BA%E1%80%9D%E1%80%B1%E1%80%B8%E1%80%99%E1%80%B0__%E1%80%9B%E1%80%BD%E1%80%85%E1%80%BA-%E1%80%81%E1%80%BD%E1%80%94%E1%80%BA%E1%80%96%E1%80%AD%E1%80%AF%E1%80%B8%E1%80%99%E1%80%B1%E1%80%AC%E1%80%84%E1%80%BA%28256k%29.mp3">
+</audio>
+</div>
 
-<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>True VDO 1 Month</h3><p>*900*8234# — 85 Baht</p><div class="ussd"><span>*900*8234#</span><button class="copy" onclick="copy('*900*8234#')">Copy</button><a class="call" href="tel:*900*8234%23">Call</a></div></div>
-
-<div class="card"><div class="badge smart">🔴 ပက်ကေ့စမတ်ရန်</div><h3>True Twitter 1 Month</h3><p>*900*3509# — 53 Baht</p><div class="ussd"><span>*900*3509#</span><button class="copy" onclick="copy('*900*3509#')">Copy</button><a class="call" href="tel:*900*3509%23">Call</a></div></div>
-
-<div class="footer">© 2026 Khans.net</div>
 </div>
 
 <script>
-function copy(t){
-  const a=document.createElement("textarea");
-  a.value=t;
-  document.body.appendChild(a);
-  a.select();
-  document.execCommand("copy");
-  document.body.removeChild(a);
-  alert("Copied: "+t);
+function copyText(text){
+    if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(text).then(()=>{
+            alert("Copied Successfully!");
+        }).catch(()=>fallbackCopy(text));
+    }else{
+        fallbackCopy(text);
+    }
 }
-function lang(l){alert(l==="th"?"Thai language demo":"English language demo");}
-function updateClock(){
-  const d=new Date();
-  document.getElementById("clock").innerText=d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})+" | "+d.toDateString();
+function fallbackCopy(text){
+    const t=document.createElement("textarea");
+    t.value=text;
+    t.style.position="fixed";
+    t.style.opacity="0";
+    document.body.appendChild(t);
+    t.focus();t.select();
+    document.execCommand("copy");
+    document.body.removeChild(t);
+    alert("Copied Successfully!");
 }
-updateClock();
-setInterval(updateClock,60000);
 </script>
 
 </body>
